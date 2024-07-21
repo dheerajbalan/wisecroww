@@ -3,10 +3,9 @@ kind: Service
 metadata:
   name: wisecow-service
 spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8000
   selector:
     app: wisecow
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8000
-  type: LoadBalancer

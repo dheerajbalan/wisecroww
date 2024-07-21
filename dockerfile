@@ -1,20 +1,7 @@
-# Use an official Node.js runtime as a parent image
-FROM node:14
-
-# Set the working directory
-WORKDIR /usr/src/app
-
-# Copy the package.json and package-lock.json files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
+FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt requirements.txt
 COPY . .
-
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Define the command to run the application
-CMD ["npm", "start"]
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8000
+CMD ["python", "app.py"]
